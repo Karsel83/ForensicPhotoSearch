@@ -1,12 +1,49 @@
+# Python
 __pycache__/
 *.pyc
+*.pyo
+
+# Virtual environment
 .venv/
 venv/
 env/
 
-data/
-evidence/
+# IDE
+.vscode/
+.idea/
 
+# Environment
+.env
+.env.*
+
+# Model files
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Video files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+# Image files
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.webp
+
+# Forensic test data
+video/data/
+video/evidence/
+video/results/
+
+# Existing deep-person-reid environment/source
 deep-person-reid/
 
+# OS
 .DS_Store
+Thumbs.db
