@@ -6,7 +6,7 @@ class PersonDetector:
     def __init__(self):
         print("[*] YOLO 모델 로딩 중...")
 
-        self.model = YOLO("yolo11n.pt")
+        self.model = YOLO("models/yolo11n.pt")
 
         print("[*] YOLO 모델 로딩 완료")
 
