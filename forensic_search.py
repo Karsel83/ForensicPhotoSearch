@@ -273,7 +273,8 @@ def search_images(
 # ============================================================
 
 def search_videos(
-    query_feature
+    query_feature,
+    model
 ):
 
     print()
@@ -337,7 +338,9 @@ def search_videos(
 
         return []
 
-    searcher = VideoPersonSearch()
+    searcher = VideoPersonSearch(
+        reid=model
+    )
 
     all_results = []
 
@@ -471,7 +474,8 @@ def main():
     # ========================================================
 
     video_results = search_videos(
-        query_feature
+        query_feature,
+        model
     )
 
     print(
@@ -553,9 +557,41 @@ def main():
             "source_type":
                 "video",
 
-            "similarity":
+           "similarity":
                 result["best_score"],
 
+            "best_score":
+                result["best_score"],
+
+            "average_score":
+                result.get(
+                    "average_score"
+                ),
+
+            "high_score_count":
+                result.get(
+                    "high_score_count"
+                ),
+
+            "sample_count":
+                result.get(
+                    "sample_count"
+                ),
+
+            "high_score_ratio":
+                result.get(
+                    "high_score_ratio"
+                ),
+
+            "track_score":
+                result.get(
+                    "track_score"
+                ),
+            "match_segments":
+                result.get(
+                    "match_segments",
+                    []
+                ),
             "source":
                 result["source"],
 
@@ -678,7 +714,22 @@ def main():
             f"  Similarity : "
             f"{result['similarity']:.4f}"
         )
+        if result["source_type"] == "video":
 
+            print(
+                f"  TrackScore : "
+                f"{result.get('track_score', 0):.4f}"
+            )
+
+            print(
+                f"  Avg Score  : "
+                f"{result.get('average_score', 0):.4f}"
+            )
+
+            print(
+                f"  High Ratio : "
+                f"{result.get('high_score_ratio', 0):.4f}"
+            )
         if result["source_type"] == "image":
 
             print(
@@ -706,6 +757,47 @@ def main():
             print(
                 f"  Duration   : "
                 f"{result['duration']:.3f}s"
+            )
+
+            segments = result.get(
+                "match_segments",
+                []
+            )
+
+            if segments:
+
+                print(
+                    "  Match Segments:"
+                )
+
+                for segment in segments:
+
+                    print(
+                        f"    "
+                        f"{format_time(segment['start_time'])}"
+                        f" ~ "
+                        f"{format_time(segment['end_time'])}"
+                        f" "
+                        f"(best="
+                        f"{segment['best_score']:.4f})"
+                    )
+
+    if segments:
+
+        print(
+            "  Match Segments:"
+        )
+
+        for segment in segments:
+
+            print(
+                f"    "
+                f"{format_time(segment['start_time'])}"
+                f" ~ "
+                f"{format_time(segment['end_time'])}"
+                f" "
+                f"(best="
+                f"{segment['best_score']:.4f})"
             )
 
     print()

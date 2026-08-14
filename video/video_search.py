@@ -27,13 +27,12 @@ from similarity import cosine_similarity
 
 class VideoPersonSearch:
 
-    def __init__(self):
+    def __init__(self, reid=None):
 
         print(
             "[*] Initializing Video Person Search"
         )
 
-        # 절대 경로 사용
         self.tracker = PersonTracker(
             model_path=os.path.join(
                 PROJECT_ROOT,
@@ -41,7 +40,10 @@ class VideoPersonSearch:
             )
         )
 
-        self.reid = PersonReID()
+        if reid is None:
+            self.reid = PersonReID()
+        else:
+            self.reid = reid
 
         self.evidence = EvidenceManager(
             evidence_root=os.path.join(
@@ -88,7 +90,170 @@ class VideoPersonSearch:
     #
     # query_feature:
     #   이미 계산된 Query OSNet embedding
-    # ========================================================
+    # ================= =======================================
+
+    def build_match_segments(
+        self,
+        scores,
+        fps,
+        threshold=0.75,
+        max_gap_frames=20
+    ):
+
+        if not scores:
+            return []
+
+        segments = []
+
+        current_start = None
+        current_end = None
+        current_scores = []
+
+        for item in scores:
+
+            frame = item["frame"]
+            score = item["score"]
+
+            if score >= threshold:
+
+                if current_start is None:
+
+                    current_start = frame
+                    current_end = frame
+                    current_scores = [score]
+
+                elif (
+                    frame - current_end
+                    <= max_gap_frames
+                ):
+
+                    current_end = frame
+                    current_scores.append(score)
+
+                else:
+
+                    segments.append({
+                        "start_frame":
+                            current_start,
+
+                        "end_frame":
+                            current_end,
+
+                        "start_time":
+                            round(
+                                current_start / fps,
+                                3
+                            ),
+
+                        "end_time":
+                            round(
+                                current_end / fps,
+                                3
+                            ),
+
+                        "duration":
+                            round(
+                                (
+                                    current_end
+                                    - current_start
+                                ) / fps,
+                                3
+                            ),
+
+                        "best_score":
+                            round(
+                                max(current_scores),
+                                4
+                            )
+                    })
+
+                    current_start = frame
+                    current_end = frame
+                    current_scores = [score]
+
+            else:
+
+                if current_start is not None:
+
+                    segments.append({
+                        "start_frame":
+                            current_start,
+
+                        "end_frame":
+                            current_end,
+
+                        "start_time":
+                            round(
+                                current_start / fps,
+                                3
+                            ),
+
+                        "end_time":
+                            round(
+                                current_end / fps,
+                                3
+                            ),
+
+                        "duration":
+                            round(
+                                (
+                                    current_end
+                                    - current_start
+                                ) / fps,
+                                3
+                            ),
+
+                        "best_score":
+                            round(
+                                max(current_scores),
+                                4
+                            )
+                    })
+
+                    current_start = None
+                    current_end = None
+                    current_scores = []
+
+        # 마지막 구간 처리
+        if current_start is not None:
+
+            segments.append({
+                "start_frame":
+                    current_start,
+
+                "end_frame":
+                    current_end,
+
+                "start_time":
+                    round(
+                        current_start / fps,
+                        3
+                    ),
+
+                "end_time":
+                    round(
+                        current_end / fps,
+                        3
+                    ),
+
+                "duration":
+                    round(
+                        (
+                            current_end
+                            - current_start
+                        ) / fps,
+                        3
+                    ),
+
+                "best_score":
+                    round(
+                        max(current_scores),
+                        4
+                    )
+            })
+
+        return segments
+
 
     def search(
         self,
@@ -308,7 +473,22 @@ class VideoPersonSearch:
                 /
                 len(score_values)
             )
+            sample_count = len(scores)
 
+            high_score_ratio = (
+                track["high_score_count"]
+                / sample_count
+            )
+            track_score = (
+                0.5 * track["best_score"]
+                + 0.3 * average_score
+                + 0.2 * high_score_ratio
+            )
+            match_segments = self.build_match_segments(
+                scores,
+                fps,
+                threshold=high_score_threshold
+            )
             # --------------------------------------------
             # Track-level match 판정
             # --------------------------------------------
@@ -351,7 +531,20 @@ class VideoPersonSearch:
 
                 "sample_count":
                     len(scores),
+                "high_score_ratio":
+                    round(
+                        high_score_ratio,
+                        4
+                    ),
 
+                "track_score":
+                    round(
+                        track_score,
+                        4
+                    ),
+                "match_segments":
+                    match_segments,
+                    
                 "first_frame":
                     track[
                         "first_frame"
@@ -426,8 +619,7 @@ class VideoPersonSearch:
 
         results.sort(
             key=lambda x:
-                x["best_score"],
+                x["track_score"],
             reverse=True
         )
-
         return results
