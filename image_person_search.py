@@ -11,7 +11,8 @@ class ImagePersonSearch:
 
     def __init__(
         self,
-        model_path="yolo11n.pt"
+        model_path="yolo11n.pt",
+        reid=None
     ):
 
         print("[*] Initializing Image Person Search")
@@ -143,7 +144,7 @@ class ImagePersonSearch:
         ):
 
             bbox = person["bbox"]
-
+            confidence = person["confidence"]
             crop = self.crop_person(
                 image,
                 bbox
@@ -190,24 +191,30 @@ class ImagePersonSearch:
             )
 
             results.append({
-
-                "type": "image",
+                "source_type": "image",
 
                 "image": image_name,
 
+                "source": image_path,
+
+                "filename": image_name,
+
                 "person_index": person_index,
 
-                "similarity": float(
-                    score
+                "similarity": round(
+                    float(score),
+                    4
                 ),
 
                 "bbox": bbox,
+                
+                "confidence": confidence,
 
-                "detection_confidence": person[
-                    "confidence"
-                ],
+                "detection_confidence": confidence,
 
-                "evidence_path": crop_path
+                "evidence_path": crop_path,
+
+                "crop": crop_path
             })
 
         return results

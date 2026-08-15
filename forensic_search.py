@@ -23,7 +23,7 @@ if PROJECT_ROOT not in sys.path:
 
 from reid_model import PersonReID
 from similarity import cosine_similarity
-
+from image_person_search import ImagePersonSearch
 from person_detector import PersonDetector
 from person_cropper import PersonCropper
 
@@ -91,6 +91,10 @@ def format_time(seconds):
 # Image Search
 # ============================================================
 
+# ============================================================
+# Image Search
+# ============================================================
+
 def search_images(
     query_feature,
     model
@@ -114,155 +118,65 @@ def search_images(
     ):
 
         print(
-            f"[!] 이미지 폴더 없음: "
+            f"[!] Image directory not found: "
             f"{IMAGE_DIR}"
         )
 
         return []
 
-    detector = PersonDetector()
+    # --------------------------------------------------------
+    # Image Search Engine
+    # --------------------------------------------------------
 
-    cropper = PersonCropper(
-        output_dir=os.path.join(
-            PROJECT_ROOT,
-            "data",
-            "person_crops"
-        )
+    searcher = ImagePersonSearch(
+        reid=model
     )
 
-    results = []
+    # --------------------------------------------------------
+    # Evidence directory
+    # --------------------------------------------------------
 
-    image_extensions = {
-        ".jpg",
-        ".jpeg",
-        ".png",
-        ".bmp",
-        ".webp",
-        ".tif",
-        ".tiff"
-    }
+    evidence_dir = os.path.join(
+        PROJECT_ROOT,
+        "evidence",
+        "images"
+    )
 
-    image_files = []
+    os.makedirs(
+        evidence_dir,
+        exist_ok=True
+    )
 
-    for path in Path(
-        IMAGE_DIR
-    ).rglob("*"):
+    # --------------------------------------------------------
+    # Search
+    # --------------------------------------------------------
 
-        if not path.is_file():
-            continue
+    results = searcher.search_directory(
 
-        if (
-            path.suffix.lower()
-            not in image_extensions
-        ):
-            continue
+        query_feature=
+            query_feature,
 
-        # Query는 image evidence에 있어도 제외
-        if (
-            os.path.abspath(
-                str(path)
-            )
-            ==
-            os.path.abspath(
-                QUERY_IMAGE
-            )
-        ):
-            continue
+        image_dir=
+            IMAGE_DIR,
 
-        image_files.append(
-            str(path)
-        )
+        evidence_dir=
+            evidence_dir
+    )
 
-    image_files.sort()
+    # --------------------------------------------------------
+    # Result metadata
+    # --------------------------------------------------------
 
+    for result in results:
+
+        result[
+            "source_type"
+        ] = "image"
+
+    print()
     print(
-        f"[*] 이미지 파일: "
-        f"{len(image_files)}개"
-    )
-
-    # --------------------------------------------------------
-    # 각 이미지에서 사람 검출
-    # --------------------------------------------------------
-
-    for image_path in image_files:
-
-        filename = os.path.basename(
-            image_path
-        )
-
-        persons = detector.detect(
-            image_path
-        )
-
-        if not persons:
-
-            continue
-
-        # crop 생성
-        crops = cropper.crop(
-            image_path,
-            persons
-        )
-
-        for crop_info in crops:
-
-            crop_path = (
-                crop_info[
-                    "crop_path"
-                ]
-            )
-
-            # ----------------------------------------------
-            # OSNet
-            # ----------------------------------------------
-
-
-            person_feature = (
-                model.extract(
-                    crop_path
-                )
-            )
-
-            score = cosine_similarity(
-                query_feature,
-                person_feature
-            )
-
-            results.append({
-
-                "source_type":
-                    "image",
-
-                "filename":
-                    filename,
-
-                "source":
-                    image_path,
-
-                "crop":
-                    crop_path,
-
-                "similarity":
-                    round(
-                        float(score),
-                        4
-                    ),
-
-                "bbox":
-                    crop_info[
-                        "bbox"
-                    ],
-
-                "confidence":
-                    crop_info[
-                        "confidence"
-                    ]
-            })
-
-    results.sort(
-        key=lambda x:
-            x["similarity"],
-        reverse=True
+        f"[*] Image search results: "
+        f"{len(results)}"
     )
 
     return results
@@ -516,7 +430,7 @@ def main():
             "source_type":
                 "image",
             "result_id":
-                f"{result['filename']}",
+                f"{result['image']}",
 
             "similarity":
                 result["similarity"],
