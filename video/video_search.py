@@ -27,7 +27,7 @@ from similarity import cosine_similarity
 
 class VideoPersonSearch:
 
-    def __init__(self, reid=None):
+    def __init__(self, reid=None,evidence_root=None):
 
         print(
             "[*] Initializing Video Person Search"
@@ -45,12 +45,16 @@ class VideoPersonSearch:
         else:
             self.reid = reid
 
-        self.evidence = EvidenceManager(
-            evidence_root=os.path.join(
+        if evidence_root is None:
+
+            evidence_root = os.path.join(
                 PROJECT_ROOT,
                 "video",
                 "evidence"
             )
+
+        self.evidence = EvidenceManager(
+            evidence_root=evidence_root
         )
 
         print(
@@ -109,6 +113,9 @@ class VideoPersonSearch:
         current_end = None
         current_scores = []
 
+        current_best_frame = None
+        current_best_score = -1.0
+
         for item in scores:
 
             frame = item["frame"]
@@ -116,11 +123,22 @@ class VideoPersonSearch:
 
             if score >= threshold:
 
+            # ============================================
+            # 새로운 Segment 시작
+            # ============================================
+
                 if current_start is None:
 
                     current_start = frame
                     current_end = frame
                     current_scores = [score]
+
+                    current_best_frame = frame
+                    current_best_score = score
+
+            # ============================================
+            # 기존 Segment에 계속 포함
+            # ============================================
 
                 elif (
                     frame - current_end
@@ -130,9 +148,19 @@ class VideoPersonSearch:
                     current_end = frame
                     current_scores.append(score)
 
+                    if score > current_best_score:
+
+                        current_best_score = score
+                        current_best_frame = frame
+
+            # ============================================
+            # 기존 Segment 종료 + 새로운 Segment 시작
+            # ============================================
+
                 else:
 
                     segments.append({
+
                         "start_frame":
                             current_start,
 
@@ -162,20 +190,32 @@ class VideoPersonSearch:
 
                         "best_score":
                             round(
-                                max(current_scores),
+                                current_best_score,
                                 4
-                            )
+                            ),
+
+                        "best_frame":
+                            current_best_frame
                     })
 
+                # 새로운 Segment
                     current_start = frame
                     current_end = frame
                     current_scores = [score]
+
+                    current_best_frame = frame
+                    current_best_score = score
+
+            # ================================================
+            # threshold 미달
+            # ================================================
 
             else:
 
                 if current_start is not None:
 
                     segments.append({
+
                         "start_frame":
                             current_start,
 
@@ -205,19 +245,29 @@ class VideoPersonSearch:
 
                         "best_score":
                             round(
-                                max(current_scores),
+                                current_best_score,
                                 4
-                            )
+                            ),
+
+                        "best_frame":
+                            current_best_frame
                     })
 
                     current_start = None
                     current_end = None
                     current_scores = []
 
-        # 마지막 구간 처리
+                    current_best_frame = None
+                    current_best_score = -1.0
+
+        # ================================================
+        # 마지막 Segment
+        # ================================================
+
         if current_start is not None:
 
             segments.append({
+
                 "start_frame":
                     current_start,
 
@@ -247,9 +297,12 @@ class VideoPersonSearch:
 
                 "best_score":
                     round(
-                        max(current_scores),
+                        current_best_score,
                         4
-                    )
+                    ),
+
+                "best_frame":
+                    current_best_frame
             })
 
         return segments
@@ -297,7 +350,7 @@ class VideoPersonSearch:
             if track_id not in tracks:
 
                 tracks[track_id] = {
-
+                    
                     "track_id":
                         track_id,
 
@@ -489,6 +542,22 @@ class VideoPersonSearch:
                 fps,
                 threshold=high_score_threshold
             )
+            for index, segment in enumerate(
+                match_segments,
+                start=1
+            ):
+
+                segment_evidence = (
+                    self.evidence.save_segment_evidence(
+                        track_id,
+                        index,
+                        segment["start_frame"],
+                        segment["end_frame"],
+                        segment["best_frame"]
+                    )
+                )
+
+                segment["evidence"] = segment_evidence
             # --------------------------------------------
             # Track-level match 판정
             # --------------------------------------------
@@ -504,8 +573,134 @@ class VideoPersonSearch:
             # 결과 생성
             # --------------------------------------------
 
-            result = {
+            context_evidence = {}
 
+            if track["best_frame"] >= 0:
+
+                context_evidence = (
+                    self.evidence.save_context_evidence(
+                        track_id,
+                        track["best_frame"]
+                    )
+                )
+            metadata = {
+
+                "track_id":
+                    track_id,
+
+                "match":
+                    match,
+
+                "best_score":
+                    round(
+                        track["best_score"],
+                        4
+                    ),
+
+                "average_score":
+                    round(
+                        average_score,
+                        4
+                    ),
+
+                "high_score_count":
+                    track[
+                        "high_score_count"
+                    ],
+
+                "sample_count":
+                    sample_count,
+
+                "high_score_ratio":
+                    round(
+                        high_score_ratio,
+                        4
+                    ),
+
+                "track_score":
+                    round(
+                        track_score,
+                        4
+                    ),
+
+                "first_frame":
+                    track[
+                        "first_frame"
+                    ],
+
+                "last_frame":
+                    track[
+                        "last_frame"
+                    ],
+
+                "best_frame":
+                    track[
+                        "best_frame"
+                    ],
+
+                "first_time":
+                    round(
+                        track[
+                            "first_frame"
+                        ] / fps,
+                        3
+                    ),
+
+                "best_time":
+                    round(
+                        track[
+                            "best_frame"
+                        ] / fps,
+                        3
+                    ),
+
+                "last_time":
+                    round(
+                        track[
+                            "last_frame"
+                        ] / fps,
+                        3
+                    ),
+
+                "duration":
+                    round(
+                        (
+                            track[
+                                "last_frame"
+                            ]
+                            -
+                            track[
+                                "first_frame"
+                            ]
+                        ) / fps,
+                        3
+                    ),
+
+                "best_bbox":
+                    track.get(
+                        "best_bbox"
+                    ),
+
+                "match_segments":
+                    match_segments,
+
+                "evidence":
+                    context_evidence,
+
+                "scores":
+                    scores
+            }
+
+            metadata_path = (
+                self.evidence.save_metadata(
+                    track_id,
+                    metadata
+                )
+            )
+
+            
+            result = {
+                
                 "track_id":
                     track_id,
 
@@ -544,6 +739,12 @@ class VideoPersonSearch:
                     ),
                 "match_segments":
                     match_segments,
+
+                "evidence":
+                    context_evidence,
+                    
+                "metadata_path":
+                    metadata_path,
                     
                 "first_frame":
                     track[

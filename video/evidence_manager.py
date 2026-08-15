@@ -14,9 +14,9 @@ class EvidenceManager:
             exist_ok=True
         )
 
-    # -----------------------------------------
-    # Track Evidence 폴더
-    # -----------------------------------------
+    # =========================================================
+    # Track Directory
+    # =========================================================
 
     def create_track_directory(self, track_id):
 
@@ -32,9 +32,9 @@ class EvidenceManager:
 
         return track_dir
 
-    # -----------------------------------------
-    # 이미지 저장
-    # -----------------------------------------
+    # =========================================================
+    # Save Frame
+    # =========================================================
 
     def save_frame(
         self,
@@ -60,15 +60,14 @@ class EvidenceManager:
         if not success:
 
             raise RuntimeError(
-                f"Evidence frame 저장 실패: {path}"
+                f"Evidence frame save failed: {path}"
             )
 
         return path
 
-    # -----------------------------------------
-    # 이미 저장된 crop 중
-    # best frame 주변 프레임 찾기
-    # -----------------------------------------
+    # =========================================================
+    # Find Context Frames
+    # =========================================================
 
     def find_context_frames(
         self,
@@ -120,35 +119,32 @@ class EvidenceManager:
         best = None
         after = None
 
-        # -------------------------------------
-        # Best frame
-        # -------------------------------------
+        # -----------------------------------------------------
+        # Best
+        # -----------------------------------------------------
 
         for frame_number, path in frame_files:
 
             if frame_number == best_frame:
 
                 best = path
-
                 break
 
-        # -------------------------------------
+        # -----------------------------------------------------
         # Before / After
-        # -------------------------------------
+        # -----------------------------------------------------
 
         if best is not None:
 
             before_candidates = [
                 (frame_number, path)
-                for frame_number, path
-                in frame_files
+                for frame_number, path in frame_files
                 if frame_number < best_frame
             ]
 
             after_candidates = [
                 (frame_number, path)
-                for frame_number, path
-                in frame_files
+                for frame_number, path in frame_files
                 if frame_number > best_frame
             ]
 
@@ -166,10 +162,9 @@ class EvidenceManager:
             "after": after
         }
 
-    # -----------------------------------------
-    # Best / Before / After를
-    # 사람이 보기 좋은 이름으로 저장
-    # -----------------------------------------
+    # =========================================================
+    # Save Track Context Evidence
+    # =========================================================
 
     def save_context_evidence(
         self,
@@ -188,9 +183,9 @@ class EvidenceManager:
 
         result = {}
 
-        # -------------------------------------
+        # -----------------------------------------------------
         # Before
-        # -------------------------------------
+        # -----------------------------------------------------
 
         if context["before"] is not None:
 
@@ -212,9 +207,9 @@ class EvidenceManager:
                 before_path
             )
 
-        # -------------------------------------
+        # -----------------------------------------------------
         # Best
-        # -------------------------------------
+        # -----------------------------------------------------
 
         if context["best"] is not None:
 
@@ -236,9 +231,9 @@ class EvidenceManager:
                 best_path
             )
 
-        # -------------------------------------
+        # -----------------------------------------------------
         # After
-        # -------------------------------------
+        # -----------------------------------------------------
 
         if context["after"] is not None:
 
@@ -262,9 +257,194 @@ class EvidenceManager:
 
         return result
 
-    # -----------------------------------------
-    # Metadata 저장
-    # -----------------------------------------
+    # =========================================================
+    # Save Segment Evidence
+    # =========================================================
+
+    def save_segment_evidence(
+        self,
+        track_id,
+        segment_index,
+        segment_start_frame,
+        segment_end_frame,
+        segment_best_frame
+    ):
+
+        track_dir = self.create_track_directory(
+            track_id
+        )
+
+        segment_dir = os.path.join(
+            track_dir,
+            f"segment_{segment_index:02d}"
+        )
+
+        os.makedirs(
+            segment_dir,
+            exist_ok=True
+        )
+
+        frame_files = []
+
+        for filename in os.listdir(track_dir):
+
+            if not filename.startswith("frame_"):
+                continue
+
+            if not filename.endswith(".jpg"):
+                continue
+
+            try:
+
+                frame_number = int(
+                    filename[
+                        len("frame_"):-4
+                    ]
+                )
+
+            except ValueError:
+
+                continue
+
+            frame_files.append(
+                (
+                    frame_number,
+                    os.path.join(
+                        track_dir,
+                        filename
+                    )
+                )
+            )
+
+        frame_files.sort(
+            key=lambda x: x[0]
+        )
+
+        before = None
+        best = None
+        after = None
+
+        # -----------------------------------------------------
+        # Best
+        # -----------------------------------------------------
+
+        for frame_number, path in frame_files:
+
+            if frame_number == segment_best_frame:
+
+                best = path
+                break
+
+        if best is None:
+            return {}
+
+        # -----------------------------------------------------
+        # Before
+        # -----------------------------------------------------
+
+        before_candidates = [
+            (frame_number, path)
+            for frame_number, path in frame_files
+            if (
+                segment_start_frame
+                <= frame_number
+                < segment_best_frame
+            )
+        ]
+
+        if before_candidates:
+
+            before = before_candidates[-1][1]
+
+        # -----------------------------------------------------
+        # After
+        # -----------------------------------------------------
+
+        after_candidates = [
+            (frame_number, path)
+            for frame_number, path in frame_files
+            if (
+                segment_best_frame
+                < frame_number
+                <= segment_end_frame
+            )
+        ]
+
+        if after_candidates:
+
+            after = after_candidates[0][1]
+
+        result = {}
+
+        # -----------------------------------------------------
+        # Save Before
+        # -----------------------------------------------------
+
+        if before is not None:
+
+            before_image = cv2.imread(
+                before
+            )
+
+            before_path = os.path.join(
+                segment_dir,
+                "before.jpg"
+            )
+
+            cv2.imwrite(
+                before_path,
+                before_image
+            )
+
+            result["before"] = before_path
+
+        # -----------------------------------------------------
+        # Save Best
+        # -----------------------------------------------------
+
+        best_image = cv2.imread(
+            best
+        )
+
+        best_path = os.path.join(
+            segment_dir,
+            "best.jpg"
+        )
+
+        cv2.imwrite(
+            best_path,
+            best_image
+        )
+
+        result["best"] = best_path
+
+        # -----------------------------------------------------
+        # Save After
+        # -----------------------------------------------------
+
+        if after is not None:
+
+            after_image = cv2.imread(
+                after
+            )
+
+            after_path = os.path.join(
+                segment_dir,
+                "after.jpg"
+            )
+
+            cv2.imwrite(
+                after_path,
+                after_image
+            )
+
+            result["after"] = after_path
+
+        return result
+
+    # =========================================================
+    # Metadata
+    # =========================================================
 
     def save_metadata(
         self,

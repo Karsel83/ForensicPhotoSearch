@@ -346,6 +346,22 @@ def search_videos(
 
     for video_path in video_files:
 
+        video_name = os.path.splitext(
+            os.path.basename(video_path)
+        )[0]
+
+        video_evidence_dir = os.path.join(
+            PROJECT_ROOT,
+            "video",
+            "evidence",
+            video_name
+        )
+
+        searcher = VideoPersonSearch(
+            reid=model,
+            evidence_root=video_evidence_dir
+        )
+
         results = searcher.search(
 
             query_feature=
@@ -499,6 +515,8 @@ def main():
 
             "source_type":
                 "image",
+            "result_id":
+                f"{result['filename']}",
 
             "similarity":
                 result["similarity"],
@@ -553,9 +571,12 @@ def main():
     for result in video_results:
 
         merged.append({
-
+            
             "source_type":
                 "video",
+
+            "result_id":
+                f"{result['video']}:track_{result['track_id']}",
 
            "similarity":
                 result["best_score"],
@@ -594,6 +615,11 @@ def main():
                 ),
             "source":
                 result["source"],
+            "evidence":
+                result.get(
+                    "evidence",
+                    {}
+                ),
 
             "video":
                 result["video"],
@@ -658,13 +684,45 @@ def main():
         RESULT_DIR,
         exist_ok=True
     )
+    video_summary = {}
 
+    for result in video_results:
+
+        video_name = result["video"]
+
+        if video_name not in video_summary:
+
+            video_summary[video_name] = {
+                "track_count": 0,
+                "best_score": 0.0,
+                "best_track_id": None,
+                "match_count": 0
+            }
+
+        summary = video_summary[video_name]
+
+        summary["track_count"] += 1
+
+        if result["best_score"] > summary["best_score"]:
+
+            summary["best_score"] = result["best_score"]
+
+            summary["best_track_id"] = (
+                result["track_id"]
+            )
+
+        if result["match"]:
+
+            summary["match_count"] += 1
     output = {
 
         "query": {
             "path":
                 QUERY_IMAGE
         },
+        "video_count": len(video_summary),
+
+        "videos": video_summary,
 
         "image_result_count":
             len(image_results),
@@ -709,7 +767,10 @@ def main():
             f"[Rank {result['rank']}] "
             f"{result['source_type'].upper()}"
         )
-
+        print(
+            f"  Result ID  : "
+            f"{result['result_id']}"
+        )
         print(
             f"  Similarity : "
             f"{result['similarity']:.4f}"
