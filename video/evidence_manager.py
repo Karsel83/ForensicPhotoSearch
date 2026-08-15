@@ -1,7 +1,7 @@
 import os
 import json
 import cv2
-
+from evidence.integrity import EvidenceIntegrity
 
 class EvidenceManager:
 
@@ -14,6 +14,13 @@ class EvidenceManager:
             exist_ok=True
         )
 
+        self.integrity = EvidenceIntegrity(
+            manifest_path=os.path.join(
+                self.evidence_root,
+                "integrity",
+                "manifest.json"
+            )
+        )
     # =========================================================
     # Track Directory
     # =========================================================
@@ -60,8 +67,19 @@ class EvidenceManager:
         if not success:
 
             raise RuntimeError(
-                f"Evidence frame save failed: {path}"
+                f"Evidence frame 저장 실패: {path}"
             )
+
+        evidence_id = (
+            f"track_{track_id}_"
+            f"{os.path.splitext(filename)[0]}"
+        )
+
+        integrity_result = self.integrity.register(
+            path,
+            evidence_id,
+            source_type="analysis"
+        )
 
         return path
 
@@ -202,6 +220,11 @@ class EvidenceManager:
                 before_path,
                 before_image
             )
+            self.integrity.register(
+                before_path,
+                f"track_{track_id}_before",
+                source_type="analysis"
+            )
 
             result["before_frame"] = (
                 before_path
@@ -225,6 +248,11 @@ class EvidenceManager:
             cv2.imwrite(
                 best_path,
                 best_image
+            )
+            self.integrity.register(
+                best_path,
+                f"track_{track_id}_best",
+                source_type="analysis"
             )
 
             result["best_frame"] = (
@@ -250,7 +278,12 @@ class EvidenceManager:
                 after_path,
                 after_image
             )
-
+            self.integrity.register(
+                after_path,
+                f"track_{track_id}_after",
+                source_type="analysis"
+            )
+            
             result["after_frame"] = (
                 after_path
             )
