@@ -47,3 +47,7 @@ deep-person-reid/
 # OS
 .DS_Store
 Thumbs.db
+# Generated ANN / search artifacts
+data/embeddings/
+data/faiss/
+results/
