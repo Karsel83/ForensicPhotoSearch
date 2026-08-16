@@ -1,0 +1,155 @@
+[
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human1.jpg",
+        "filename": "human1.jpg",
+        "image": "human1.jpg",
+        "person_index": 0,
+        "bbox": [
+            1,
+            12,
+            362,
+            544
+        ],
+        "confidence": 0.9254153370857239,
+        "detection_confidence": 0.9254153370857239,
+        "crop": "evidence\\images\\human1\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human1\\person_0.jpg"
+    },
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human2.jpg",
+        "filename": "human2.jpg",
+        "image": "human2.jpg",
+        "person_index": 0,
+        "bbox": [
+            615,
+            8,
+            1407,
+            1265
+        ],
+        "confidence": 0.9360855221748352,
+        "detection_confidence": 0.9360855221748352,
+        "crop": "evidence\\images\\human2\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human2\\person_0.jpg"
+    },
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human3.jpg",
+        "filename": "human3.jpg",
+        "image": "human3.jpg",
+        "person_index": 0,
+        "bbox": [
+            265,
+            8,
+            1650,
+            1265
+        ],
+        "confidence": 0.8938811421394348,
+        "detection_confidence": 0.8938811421394348,
+        "crop": "evidence\\images\\human3\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human3\\person_0.jpg"
+    },
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human_a1.jpg",
+        "filename": "human_a1.jpg",
+        "image": "human_a1.jpg",
+        "person_index": 0,
+        "bbox": [
+            0,
+            18,
+            235,
+            417
+        ],
+        "confidence": 0.9369845390319824,
+        "detection_confidence": 0.9369845390319824,
+        "crop": "evidence\\images\\human_a1\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human_a1\\person_0.jpg"
+    },
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human_a2.jpg",
+        "filename": "human_a2.jpg",
+        "image": "human_a2.jpg",
+        "person_index": 0,
+        "bbox": [
+            0,
+            57,
+            315,
+            630
+        ],
+        "confidence": 0.9250180721282959,
+        "detection_confidence": 0.9250180721282959,
+        "crop": "evidence\\images\\human_a2\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human_a2\\person_0.jpg"
+    },
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human_b1.jpg",
+        "filename": "human_b1.jpg",
+        "image": "human_b1.jpg",
+        "person_index": 0,
+        "bbox": [
+            0,
+            0,
+            414,
+            736
+        ],
+        "confidence": 0.9215093851089478,
+        "detection_confidence": 0.9215093851089478,
+        "crop": "evidence\\images\\human_b1\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human_b1\\person_0.jpg"
+    },
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human_b2.jpg",
+        "filename": "human_b2.jpg",
+        "image": "human_b2.jpg",
+        "person_index": 0,
+        "bbox": [
+            26,
+            29,
+            397,
+            660
+        ],
+        "confidence": 0.885990560054779,
+        "detection_confidence": 0.885990560054779,
+        "crop": "evidence\\images\\human_b2\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human_b2\\person_0.jpg"
+    },
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human_c1.jpg",
+        "filename": "human_c1.jpg",
+        "image": "human_c1.jpg",
+        "person_index": 0,
+        "bbox": [
+            5,
+            27,
+            450,
+            678
+        ],
+        "confidence": 0.9409414529800415,
+        "detection_confidence": 0.9409414529800415,
+        "crop": "evidence\\images\\human_c1\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human_c1\\person_0.jpg"
+    },
+    {
+        "source_type": "image",
+        "source": "evidence\\images\\human_c2.jpg",
+        "filename": "human_c2.jpg",
+        "image": "human_c2.jpg",
+        "person_index": 0,
+        "bbox": [
+            1,
+            24,
+            374,
+            529
+        ],
+        "confidence": 0.928854763507843,
+        "detection_confidence": 0.928854763507843,
+        "crop": "evidence\\images\\human_c2\\person_0.jpg",
+        "evidence_path": "evidence\\images\\human_c2\\person_0.jpg"
+    }
+]

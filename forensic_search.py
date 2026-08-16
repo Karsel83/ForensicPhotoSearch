@@ -63,6 +63,20 @@ RESULT_FILE = os.path.join(
     "search_results.json"
 )
 
+IMAGE_EMBEDDINGS = os.path.join(
+    PROJECT_ROOT,
+    "data",
+    "embeddings",
+    "embeddings.npy"
+)
+
+IMAGE_METADATA = os.path.join(
+    PROJECT_ROOT,
+    "data",
+    "embeddings",
+    "metadata.json"
+)
+
 
 # ============================================================
 # Time
@@ -129,7 +143,10 @@ def search_images(
     # --------------------------------------------------------
 
     searcher = ImagePersonSearch(
-        reid=model
+        reid=model,
+        embeddings_path=IMAGE_EMBEDDINGS,
+        metadata_path=IMAGE_METADATA,
+        top_k=50
     )
 
     # --------------------------------------------------------

@@ -1,3 +1,7 @@
+import os
+import shutil
+from pathlib import Path
+
 from image_loader import scan_images
 from image_database import save_database
 from person_detector import PersonDetector
@@ -14,7 +18,14 @@ def main():
     print("Forensic Photo Search")
     print("=" * 60)
 
-    images = scan_images(IMAGE_FOLDER)
+    image_root = Path(IMAGE_FOLDER).resolve()
+
+    # Evidence crops are stored below evidence/images/<image-name>/.
+    # Only top-level files are source evidence images.
+    images = [
+        image for image in scan_images(IMAGE_FOLDER)
+        if Path(image["path"]).resolve().parent == image_root
+    ]
 
     print(f"[*] 발견한 이미지: {len(images)}개")
 
@@ -37,6 +48,16 @@ def main():
             image["path"],
             persons
         )
+
+        evidence_dir = Path(IMAGE_FOLDER) / Path(image["path"]).stem
+
+        for person_index, crop in enumerate(crops):
+            evidence_dir.mkdir(parents=True, exist_ok=True)
+            evidence_path = evidence_dir / f"person_{person_index}.jpg"
+            shutil.copy2(crop["crop_path"], evidence_path)
+
+            crop["person_index"] = person_index
+            crop["evidence_path"] = str(evidence_path)
 
         image["person_crops"] = crops
 

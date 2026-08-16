@@ -3,9 +3,11 @@ import json
 import numpy as np
 
 from reid_model import PersonReID
+from image_database import load_database
 
 
 CROP_DIR = "data/person_crops"
+DATABASE_FILE = "data/images.json"
 OUTPUT_DIR = "data/embeddings"
 
 EMBEDDING_FILE = os.path.join(
@@ -31,32 +33,37 @@ def main():
     embeddings = []
     metadata = []
 
-    files = sorted(os.listdir(CROP_DIR))
+    images = load_database(DATABASE_FILE)
 
-    for filename in files:
+    if not images:
+        print("[!] Image database not found or empty. Run build_database.py first.")
+        return
 
-        if not filename.lower().endswith(
-            (".jpg", ".jpeg", ".png")
-        ):
-            continue
+    for image in images:
+        for crop in image.get("person_crops", []):
+            crop_path = crop.get("crop_path")
 
-        image_path = os.path.join(
-            CROP_DIR,
-            filename
-        )
+            if not crop_path or not os.path.exists(crop_path):
+                print(f"[!] Crop not found, skipped: {crop_path}")
+                continue
 
-        print(f"[*] Processing: {filename}")
+            print(f"[*] Processing: {crop_path}")
+            embeddings.append(model.extract(crop_path))
 
-        embedding = model.extract(
-            image_path
-        )
-
-        embeddings.append(embedding)
-
-        metadata.append({
-            "filename": filename,
-            "path": image_path
-        })
+            # This is the result schema required by forensic_search.py.  The
+            # vector index therefore needs no image decoding at search time.
+            metadata.append({
+                "source_type": "image",
+                "source": image["path"],
+                "filename": image["filename"],
+                "image": image["filename"],
+                "person_index": crop["person_index"],
+                "bbox": crop["bbox"],
+                "confidence": crop["confidence"],
+                "detection_confidence": crop["confidence"],
+                "crop": crop["evidence_path"],
+                "evidence_path": crop["evidence_path"]
+            })
 
     if len(embeddings) == 0:
 

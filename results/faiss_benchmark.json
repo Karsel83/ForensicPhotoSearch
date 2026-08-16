@@ -1,0 +1,20 @@
+[
+  {
+    "dataset": "synthetic_normalized_float32",
+    "vector_count": 1000000,
+    "dimension": 512,
+    "top_k": 100,
+    "exact_search_ms_per_query": 36.199015,
+    "ann_index": {
+      "index_type": "ivf_flat",
+      "nlist": 4000,
+      "nprobe": 4000,
+      "vector_count": 1000000,
+      "dimension": 512
+    },
+    "ann_build_seconds": 17.365391,
+    "ann_search_ms_per_query": 39.325894,
+    "recall_at_k": 1.0,
+    "ann_memory_increase_bytes": 2675441664
+  }
+]

@@ -679,10 +679,10 @@
         {
             "source_type": "image",
             "result_id": "human1.jpg",
-            "similarity": 0.5343,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human1.jpg",
+            "similarity": 0.5368,
+            "source": "evidence\\images\\human1.jpg",
             "filename": "human1.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human1\\person_0.jpg",
+            "crop": "evidence\\images\\human1\\person_0.jpg",
             "bbox": [
                 1,
                 12,
@@ -697,7 +697,7 @@
             "first_time": null,
             "last_time": null,
             "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human1\\person_0.jpg",
+            "evidence_path": "evidence\\images\\human1\\person_0.jpg",
             "metadata_path": null,
             "rank": 22
         },
@@ -731,31 +731,6 @@
             "rank": 23
         },
         {
-            "source_type": "image",
-            "result_id": "human_a2.jpg",
-            "similarity": 0.5235,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_a2.jpg",
-            "filename": "human_a2.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_a2\\person_0.jpg",
-            "bbox": [
-                0,
-                57,
-                315,
-                630
-            ],
-            "confidence": 0.9250180721282959,
-            "track_id": null,
-            "best_frame": null,
-            "best_time": null,
-            "timecode": null,
-            "first_time": null,
-            "last_time": null,
-            "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_a2\\person_0.jpg",
-            "metadata_path": null,
-            "rank": 24
-        },
-        {
             "source_type": "video",
             "result_id": "test2.mp4:track_49",
             "similarity": 0.5232,
@@ -782,6 +757,31 @@
             "duration": 4.64,
             "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\evidence\\test2\\track_49\\frame_180.jpg",
             "metadata_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\evidence\\test2\\track_49\\metadata.json",
+            "rank": 24
+        },
+        {
+            "source_type": "image",
+            "result_id": "human_a2.jpg",
+            "similarity": 0.5231,
+            "source": "evidence\\images\\human_a2.jpg",
+            "filename": "human_a2.jpg",
+            "crop": "evidence\\images\\human_a2\\person_0.jpg",
+            "bbox": [
+                0,
+                57,
+                315,
+                630
+            ],
+            "confidence": 0.9250180721282959,
+            "track_id": null,
+            "best_frame": null,
+            "best_time": null,
+            "timecode": null,
+            "first_time": null,
+            "last_time": null,
+            "duration": null,
+            "evidence_path": "evidence\\images\\human_a2\\person_0.jpg",
+            "metadata_path": null,
             "rank": 25
         },
         {
@@ -930,10 +930,10 @@
         {
             "source_type": "image",
             "result_id": "human3.jpg",
-            "similarity": 0.4708,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human3.jpg",
+            "similarity": 0.47,
+            "source": "evidence\\images\\human3.jpg",
             "filename": "human3.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human3\\person_0.jpg",
+            "crop": "evidence\\images\\human3\\person_0.jpg",
             "bbox": [
                 265,
                 8,
@@ -948,7 +948,7 @@
             "first_time": null,
             "last_time": null,
             "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human3\\person_0.jpg",
+            "evidence_path": "evidence\\images\\human3\\person_0.jpg",
             "metadata_path": null,
             "rank": 31
         },
@@ -1182,18 +1182,18 @@
         },
         {
             "source_type": "image",
-            "result_id": "human_c2.jpg",
-            "similarity": 0.4499,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_c2.jpg",
-            "filename": "human_c2.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_c2\\person_0.jpg",
+            "result_id": "human_a1.jpg",
+            "similarity": 0.4501,
+            "source": "evidence\\images\\human_a1.jpg",
+            "filename": "human_a1.jpg",
+            "crop": "evidence\\images\\human_a1\\person_0.jpg",
             "bbox": [
-                1,
-                24,
-                374,
-                529
+                0,
+                18,
+                235,
+                417
             ],
-            "confidence": 0.928854763507843,
+            "confidence": 0.9369845390319824,
             "track_id": null,
             "best_frame": null,
             "best_time": null,
@@ -1201,7 +1201,7 @@
             "first_time": null,
             "last_time": null,
             "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_c2\\person_0.jpg",
+            "evidence_path": "evidence\\images\\human_a1\\person_0.jpg",
             "metadata_path": null,
             "rank": 40
         },
@@ -1235,18 +1235,18 @@
         },
         {
             "source_type": "image",
-            "result_id": "human_a1.jpg",
-            "similarity": 0.4476,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_a1.jpg",
-            "filename": "human_a1.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_a1\\person_0.jpg",
+            "result_id": "human_c2.jpg",
+            "similarity": 0.4496,
+            "source": "evidence\\images\\human_c2.jpg",
+            "filename": "human_c2.jpg",
+            "crop": "evidence\\images\\human_c2\\person_0.jpg",
             "bbox": [
-                0,
-                18,
-                235,
-                417
+                1,
+                24,
+                374,
+                529
             ],
-            "confidence": 0.9369845390319824,
+            "confidence": 0.928854763507843,
             "track_id": null,
             "best_frame": null,
             "best_time": null,
@@ -1254,7 +1254,7 @@
             "first_time": null,
             "last_time": null,
             "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_a1\\person_0.jpg",
+            "evidence_path": "evidence\\images\\human_c2\\person_0.jpg",
             "metadata_path": null,
             "rank": 42
         },
@@ -1289,10 +1289,10 @@
         {
             "source_type": "image",
             "result_id": "human_c1.jpg",
-            "similarity": 0.4442,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_c1.jpg",
+            "similarity": 0.444,
+            "source": "evidence\\images\\human_c1.jpg",
             "filename": "human_c1.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_c1\\person_0.jpg",
+            "crop": "evidence\\images\\human_c1\\person_0.jpg",
             "bbox": [
                 5,
                 27,
@@ -1307,34 +1307,9 @@
             "first_time": null,
             "last_time": null,
             "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_c1\\person_0.jpg",
+            "evidence_path": "evidence\\images\\human_c1\\person_0.jpg",
             "metadata_path": null,
             "rank": 44
-        },
-        {
-            "source_type": "image",
-            "result_id": "human_b2.jpg",
-            "similarity": 0.4435,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_b2.jpg",
-            "filename": "human_b2.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_b2\\person_0.jpg",
-            "bbox": [
-                26,
-                29,
-                397,
-                660
-            ],
-            "confidence": 0.885990560054779,
-            "track_id": null,
-            "best_frame": null,
-            "best_time": null,
-            "timecode": null,
-            "first_time": null,
-            "last_time": null,
-            "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_b2\\person_0.jpg",
-            "metadata_path": null,
-            "rank": 45
         },
         {
             "source_type": "video",
@@ -1363,6 +1338,31 @@
             "duration": 0.92,
             "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\evidence\\test2\\track_121\\frame_500.jpg",
             "metadata_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\evidence\\test2\\track_121\\metadata.json",
+            "rank": 45
+        },
+        {
+            "source_type": "image",
+            "result_id": "human_b2.jpg",
+            "similarity": 0.4409,
+            "source": "evidence\\images\\human_b2.jpg",
+            "filename": "human_b2.jpg",
+            "crop": "evidence\\images\\human_b2\\person_0.jpg",
+            "bbox": [
+                26,
+                29,
+                397,
+                660
+            ],
+            "confidence": 0.885990560054779,
+            "track_id": null,
+            "best_frame": null,
+            "best_time": null,
+            "timecode": null,
+            "first_time": null,
+            "last_time": null,
+            "duration": null,
+            "evidence_path": "evidence\\images\\human_b2\\person_0.jpg",
+            "metadata_path": null,
             "rank": 46
         },
         {
@@ -1510,6 +1510,31 @@
             "rank": 51
         },
         {
+            "source_type": "image",
+            "result_id": "human2.jpg",
+            "similarity": 0.4236,
+            "source": "evidence\\images\\human2.jpg",
+            "filename": "human2.jpg",
+            "crop": "evidence\\images\\human2\\person_0.jpg",
+            "bbox": [
+                615,
+                8,
+                1407,
+                1265
+            ],
+            "confidence": 0.9360855221748352,
+            "track_id": null,
+            "best_frame": null,
+            "best_time": null,
+            "timecode": null,
+            "first_time": null,
+            "last_time": null,
+            "duration": null,
+            "evidence_path": "evidence\\images\\human2\\person_0.jpg",
+            "metadata_path": null,
+            "rank": 52
+        },
+        {
             "source_type": "video",
             "result_id": "test2.mp4:track_99",
             "similarity": 0.4234,
@@ -1535,40 +1560,15 @@
             "duration": 0.6,
             "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\evidence\\test2\\track_99\\frame_380.jpg",
             "metadata_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\evidence\\test2\\track_99\\metadata.json",
-            "rank": 52
-        },
-        {
-            "source_type": "image",
-            "result_id": "human2.jpg",
-            "similarity": 0.4226,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human2.jpg",
-            "filename": "human2.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human2\\person_0.jpg",
-            "bbox": [
-                615,
-                8,
-                1407,
-                1265
-            ],
-            "confidence": 0.9360855221748352,
-            "track_id": null,
-            "best_frame": null,
-            "best_time": null,
-            "timecode": null,
-            "first_time": null,
-            "last_time": null,
-            "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human2\\person_0.jpg",
-            "metadata_path": null,
             "rank": 53
         },
         {
             "source_type": "image",
             "result_id": "human_b1.jpg",
-            "similarity": 0.4091,
-            "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_b1.jpg",
+            "similarity": 0.4071,
+            "source": "evidence\\images\\human_b1.jpg",
             "filename": "human_b1.jpg",
-            "crop": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_b1\\person_0.jpg",
+            "crop": "evidence\\images\\human_b1\\person_0.jpg",
             "bbox": [
                 0,
                 0,
@@ -1583,7 +1583,7 @@
             "first_time": null,
             "last_time": null,
             "duration": null,
-            "evidence_path": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\evidence\\images\\human_b1\\person_0.jpg",
+            "evidence_path": "evidence\\images\\human_b1\\person_0.jpg",
             "metadata_path": null,
             "rank": 54
         },

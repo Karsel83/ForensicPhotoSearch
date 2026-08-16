@@ -5,6 +5,8 @@ from ultralytics import YOLO
 
 from reid_model import PersonReID
 from similarity import cosine_similarity
+from image_database import ImageEmbeddingIndex
+from two_stage_faiss import TwoStageImageSearch
 
 
 class ImagePersonSearch:
@@ -12,19 +14,40 @@ class ImagePersonSearch:
     def __init__(
         self,
         model_path="yolo11n.pt",
-        reid=None
+        reid=None,
+        embeddings_path="data/embeddings/embeddings.npy",
+        metadata_path="data/embeddings/metadata.json",
+        faiss_index_path="data/faiss/image.index",
+        candidate_k=1000,
+        top_k=50
     ):
 
         print("[*] Initializing Image Person Search")
 
-        self.model = YOLO(model_path)
+        self.model_path = model_path
+        self.model = None
+        self.embeddings_path = embeddings_path
+        self.metadata_path = metadata_path
+        self.faiss_index_path = faiss_index_path
+        self.candidate_k = candidate_k
+        self.top_k = top_k
 
-        if reid is None:
+        # The unified search supplies the already-loaded query Re-ID model.
+        # Keep standalone/legacy use lazy so vector-only search never loads it.
+        self.reid = reid
+
+        print("[*] Image Person Search ready (vector index mode)")
+
+    def _get_detector(self):
+        """Kept for the legacy single-image helper; directory search uses no YOLO."""
+        if self.model is None:
+            self.model = YOLO(self.model_path)
+        return self.model
+
+    def _get_reid(self):
+        if self.reid is None:
             self.reid = PersonReID()
-        else:
-            self.reid = reid
-
-        print("[*] Image Person Search ready")
+        return self.reid
 
     # --------------------------------------------------
     # Person Crop
@@ -63,7 +86,7 @@ class ImagePersonSearch:
         image
     ):
 
-        results = self.model(
+        results = self._get_detector()(
             image,
             verbose=False
         )
@@ -181,7 +204,7 @@ class ImagePersonSearch:
             # Re-ID
             # ------------------------------------------
 
-            person_feature = self.reid.extract(
+            person_feature = self._get_reid().extract(
                 crop_path
             )
 
@@ -230,64 +253,24 @@ class ImagePersonSearch:
         evidence_dir
     ):
 
-        if not os.path.exists(
-            image_dir
-        ):
-            print(
-                f"[!] Image directory not found: "
-                f"{image_dir}"
-            )
+        # FAISS retrieves candidates; exact cosine re-ranks only those candidates.
+        # The compatible arguments remain because forensic_search.py already calls this method.
+        searcher = TwoStageImageSearch(
+            index_file=self.faiss_index_path,
+            embeddings_file=self.embeddings_path,
+            metadata_file=self.metadata_path
+        )
 
-            return []
-
-        files = sorted(
-            f
-            for f in os.listdir(image_dir)
-            if f.lower().endswith(
-                (
-                    ".jpg",
-                    ".jpeg",
-                    ".png",
-                    ".bmp",
-                    ".webp"
-                )
-            )
+        results, metrics = searcher.search(
+            query_feature,
+            candidate_k=self.candidate_k,
+            top_k=self.top_k
         )
 
         print(
-            f"[*] Image files: {len(files)}"
-        )
-
-        results = []
-
-        for index, filename in enumerate(
-            files,
-            start=1
-        ):
-
-            image_path = os.path.join(
-                image_dir,
-                filename
-            )
-
-            print(
-                f"[{index:02d}/{len(files):02d}] "
-                f"{filename}"
-            )
-
-            image_results = self.search_image(
-                query_feature,
-                image_path,
-                evidence_dir
-            )
-
-            results.extend(
-                image_results
-            )
-
-        results.sort(
-            key=lambda x: x["similarity"],
-            reverse=True
+            f"[*] Two-stage image search: "
+            f"candidates={metrics['candidate_k']}, "
+            f"total={metrics['total_ms']:.4f}ms"
         )
 
         return results

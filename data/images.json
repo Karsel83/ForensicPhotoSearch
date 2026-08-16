@@ -1,0 +1,440 @@
+[
+    {
+        "path": "evidence\\images\\cat.983.jpg",
+        "filename": "cat.983.jpg",
+        "format": "JPEG",
+        "width": 309,
+        "height": 499,
+        "sha256": "4f9eac67d789e61813e2808b74cc9c28be23b344229a7ec400b6f78f89f02ba7",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\cat.984.jpg",
+        "filename": "cat.984.jpg",
+        "format": "JPEG",
+        "width": 500,
+        "height": 333,
+        "sha256": "e720f7f2c7014384e43e8c103c1d89febaf149787f16d6d8cc3cedf8b0c5016a",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\cat.985.jpg",
+        "filename": "cat.985.jpg",
+        "format": "JPEG",
+        "width": 299,
+        "height": 225,
+        "sha256": "3515a18aab3b3e406c76ce8956ee90f5d898e0d432ffbdc36f6e55d7f69fd2be",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\cat.986.jpg",
+        "filename": "cat.986.jpg",
+        "format": "JPEG",
+        "width": 500,
+        "height": 374,
+        "sha256": "2a41fdb59f12679828f569cc4cd521ca4194f7154926ec4fb522c4cee3c0cfcb",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\cat.987.jpg",
+        "filename": "cat.987.jpg",
+        "format": "JPEG",
+        "width": 499,
+        "height": 375,
+        "sha256": "65604400f61fb7e1b004e721192dc3124c10f2ef007c39718af3003e576539e5",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\dog.9829.jpg",
+        "filename": "dog.9829.jpg",
+        "format": "JPEG",
+        "width": 499,
+        "height": 382,
+        "sha256": "b6b20c3753619bdcef672577f1e6e106d243ecc8ce73d6431448cfdae17f95c0",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\dog.9830.jpg",
+        "filename": "dog.9830.jpg",
+        "format": "JPEG",
+        "width": 499,
+        "height": 375,
+        "sha256": "6fb022b11d48cc2fcd030d2517bf26959379e972e3aaf58a1d37dc3df8c6f35a",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\dog.9831.jpg",
+        "filename": "dog.9831.jpg",
+        "format": "JPEG",
+        "width": 443,
+        "height": 439,
+        "sha256": "21c82da47f4c224a2b95e367a289e3d7e6526fd78250f6779d41f9cb684edcb5",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\dog.9832.jpg",
+        "filename": "dog.9832.jpg",
+        "format": "JPEG",
+        "width": 399,
+        "height": 499,
+        "sha256": "9c44723be66815b7f1b1dd390ac17dc1708cbaf55e08372b2998993390e4050c",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\dog.9833.jpg",
+        "filename": "dog.9833.jpg",
+        "format": "JPEG",
+        "width": 399,
+        "height": 278,
+        "sha256": "a9717df65d4dc6eec20e0cc0286b45bb168c2400d4d59f4e42fdfa2071406d76",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\dog.9834.jpg",
+        "filename": "dog.9834.jpg",
+        "format": "JPEG",
+        "width": 500,
+        "height": 374,
+        "sha256": "1a99d2c13d0b6d911cc11238f0a24827bf4b4e7e0db9de102913e9ca8f87da39",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\dog.9835.jpg",
+        "filename": "dog.9835.jpg",
+        "format": "JPEG",
+        "width": 499,
+        "height": 444,
+        "sha256": "8ec6e06dc176fbce54fb0d10fef57a89a5931511fd020fd8069615dbe4639915",
+        "person_count": 0,
+        "persons": [],
+        "person_crops": []
+    },
+    {
+        "path": "evidence\\images\\human1.jpg",
+        "filename": "human1.jpg",
+        "format": "JPEG",
+        "width": 365,
+        "height": 547,
+        "sha256": "bd1f572a28eaf7fc2cc305cc64d4288e881257425715351efde1125ed70c6d20",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.9254153370857239,
+                "bbox": [
+                    1,
+                    12,
+                    362,
+                    544
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human1_person_0.jpg",
+                "confidence": 0.9254153370857239,
+                "bbox": [
+                    1,
+                    12,
+                    362,
+                    544
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human1\\person_0.jpg"
+            }
+        ]
+    },
+    {
+        "path": "evidence\\images\\human2.jpg",
+        "filename": "human2.jpg",
+        "format": "JPEG",
+        "width": 1920,
+        "height": 1280,
+        "sha256": "2004033343da523defb00187558774c0c42bef85d389995254c0f2c777c66717",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.9360855221748352,
+                "bbox": [
+                    615,
+                    8,
+                    1407,
+                    1265
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human2_person_0.jpg",
+                "confidence": 0.9360855221748352,
+                "bbox": [
+                    615,
+                    8,
+                    1407,
+                    1265
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human2\\person_0.jpg"
+            }
+        ]
+    },
+    {
+        "path": "evidence\\images\\human3.jpg",
+        "filename": "human3.jpg",
+        "format": "JPEG",
+        "width": 1920,
+        "height": 1282,
+        "sha256": "35771c41a203c3302b9de72c6cbd5c7f9751edb09ae9362439bf35256bb709ce",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.8938811421394348,
+                "bbox": [
+                    265,
+                    8,
+                    1650,
+                    1265
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human3_person_0.jpg",
+                "confidence": 0.8938811421394348,
+                "bbox": [
+                    265,
+                    8,
+                    1650,
+                    1265
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human3\\person_0.jpg"
+            }
+        ]
+    },
+    {
+        "path": "evidence\\images\\human_a1.jpg",
+        "filename": "human_a1.jpg",
+        "format": "JPEG",
+        "width": 236,
+        "height": 419,
+        "sha256": "d99e27301d8497ea0bab3fefff82b737bbd8c3003992f220e7f56f139578704e",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.9369845390319824,
+                "bbox": [
+                    0,
+                    18,
+                    235,
+                    417
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human_a1_person_0.jpg",
+                "confidence": 0.9369845390319824,
+                "bbox": [
+                    0,
+                    18,
+                    235,
+                    417
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human_a1\\person_0.jpg"
+            }
+        ]
+    },
+    {
+        "path": "evidence\\images\\human_a2.jpg",
+        "filename": "human_a2.jpg",
+        "format": "JPEG",
+        "width": 316,
+        "height": 632,
+        "sha256": "8b53b145f5f8fc128ee93b697531852a06ea9f0a3e70a2ffe6c8ad6b10255c9a",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.9250180721282959,
+                "bbox": [
+                    0,
+                    57,
+                    315,
+                    630
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human_a2_person_0.jpg",
+                "confidence": 0.9250180721282959,
+                "bbox": [
+                    0,
+                    57,
+                    315,
+                    630
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human_a2\\person_0.jpg"
+            }
+        ]
+    },
+    {
+        "path": "evidence\\images\\human_b1.jpg",
+        "filename": "human_b1.jpg",
+        "format": "JPEG",
+        "width": 415,
+        "height": 739,
+        "sha256": "39654c3bdd96fc4ed970ecaf6ffff2e5f00b4078870819cbf384790daa16e41c",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.9215093851089478,
+                "bbox": [
+                    0,
+                    0,
+                    414,
+                    736
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human_b1_person_0.jpg",
+                "confidence": 0.9215093851089478,
+                "bbox": [
+                    0,
+                    0,
+                    414,
+                    736
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human_b1\\person_0.jpg"
+            }
+        ]
+    },
+    {
+        "path": "evidence\\images\\human_b2.jpg",
+        "filename": "human_b2.jpg",
+        "format": "JPEG",
+        "width": 461,
+        "height": 664,
+        "sha256": "a5db16e8d8e01102ddc123ae795451467d0abb0ae2a3937a6e8664dca09d9c18",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.885990560054779,
+                "bbox": [
+                    26,
+                    29,
+                    397,
+                    660
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human_b2_person_0.jpg",
+                "confidence": 0.885990560054779,
+                "bbox": [
+                    26,
+                    29,
+                    397,
+                    660
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human_b2\\person_0.jpg"
+            }
+        ]
+    },
+    {
+        "path": "evidence\\images\\human_c1.jpg",
+        "filename": "human_c1.jpg",
+        "format": "JPEG",
+        "width": 452,
+        "height": 678,
+        "sha256": "77b86d5e445766ab32d1aacb84960180db995e706dcec304dd2c57e71177f50e",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.9409414529800415,
+                "bbox": [
+                    5,
+                    27,
+                    450,
+                    678
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human_c1_person_0.jpg",
+                "confidence": 0.9409414529800415,
+                "bbox": [
+                    5,
+                    27,
+                    450,
+                    678
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human_c1\\person_0.jpg"
+            }
+        ]
+    },
+    {
+        "path": "evidence\\images\\human_c2.jpg",
+        "filename": "human_c2.jpg",
+        "format": "JPEG",
+        "width": 378,
+        "height": 529,
+        "sha256": "f804e2d7301de0725ac0104ed2a3fa347879a30c8ea2c943937fdd3310262580",
+        "person_count": 1,
+        "persons": [
+            {
+                "confidence": 0.928854763507843,
+                "bbox": [
+                    1,
+                    24,
+                    374,
+                    529
+                ]
+            }
+        ],
+        "person_crops": [
+            {
+                "crop_path": "data\\person_crops\\human_c2_person_0.jpg",
+                "confidence": 0.928854763507843,
+                "bbox": [
+                    1,
+                    24,
+                    374,
+                    529
+                ],
+                "person_index": 0,
+                "evidence_path": "evidence\\images\\human_c2\\person_0.jpg"
+            }
+        ]
+    }
+]
