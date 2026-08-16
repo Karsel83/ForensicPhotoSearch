@@ -1,6 +1,9 @@
 {
-  "index_type": "flat",
-  "vector_count": 9,
+  "index_type": "hnsw",
+  "hnsw_m": 32,
+  "ef_construction": 200,
+  "ef_search": 64,
+  "vector_count": 32677,
   "dimension": 512,
-  "build_seconds": 0.000149
+  "build_seconds": 2.273501
 }
