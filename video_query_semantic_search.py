@@ -770,17 +770,46 @@ class VideoQuerySemanticSearch:
 
             try:
 
+                video_source = Path(
+                    candidate["source"]
+                )
+
+                if not video_source.exists():
+
+                    video_source = (
+                        PROJECT_ROOT
+                        / "video"
+                        / "data"
+                        / Path(
+                            candidate["video"]
+                        ).name
+                    )
+
+                if not video_source.exists():
+
+                    print(
+                        f"[!] Video not found: "
+                        f"{video_source}"
+                    )
+
+                    continue
+
                 frame_path = (
                     FAISS_ROOT
                     / "video_query_frames"
                     / (
-                        f"{Path(candidate['source']).stem}"
+                        f"{video_source.stem}"
                         f"_frame_{candidate['frame']}.jpg"
                     )
                 )
 
+                frame_path.parent.mkdir(
+                    parents=True,
+                    exist_ok=True
+                )
+
                 self.extract_frame(
-                    candidate["source"],
+                    video_source,
                     candidate["frame"],
                     frame_path
                 )
