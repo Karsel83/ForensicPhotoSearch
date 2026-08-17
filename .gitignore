@@ -51,3 +51,10 @@ Thumbs.db
 data/embeddings/
 data/faiss/
 results/
+# Generated semantic search artifacts
+data/semantic/
+
+# Qwen source / model
+Qwen3-VL-Embedding/
+models/qwen3-vl/
+*.safetensors
