@@ -1,0 +1,462 @@
+[
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 0,
+        "time": 0.0,
+        "fps": 60.0,
+        "embedding_id": 0
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 60,
+        "time": 1.0,
+        "fps": 60.0,
+        "embedding_id": 1
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 120,
+        "time": 2.0,
+        "fps": 60.0,
+        "embedding_id": 2
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 180,
+        "time": 3.0,
+        "fps": 60.0,
+        "embedding_id": 3
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 240,
+        "time": 4.0,
+        "fps": 60.0,
+        "embedding_id": 4
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 300,
+        "time": 5.0,
+        "fps": 60.0,
+        "embedding_id": 5
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 360,
+        "time": 6.0,
+        "fps": 60.0,
+        "embedding_id": 6
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 420,
+        "time": 7.0,
+        "fps": 60.0,
+        "embedding_id": 7
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 480,
+        "time": 8.0,
+        "fps": 60.0,
+        "embedding_id": 8
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 540,
+        "time": 9.0,
+        "fps": 60.0,
+        "embedding_id": 9
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 600,
+        "time": 10.0,
+        "fps": 60.0,
+        "embedding_id": 10
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 660,
+        "time": 11.0,
+        "fps": 60.0,
+        "embedding_id": 11
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 720,
+        "time": 12.0,
+        "fps": 60.0,
+        "embedding_id": 12
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 780,
+        "time": 13.0,
+        "fps": 60.0,
+        "embedding_id": 13
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 840,
+        "time": 14.0,
+        "fps": 60.0,
+        "embedding_id": 14
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 900,
+        "time": 15.0,
+        "fps": 60.0,
+        "embedding_id": 15
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 960,
+        "time": 16.0,
+        "fps": 60.0,
+        "embedding_id": 16
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 1020,
+        "time": 17.0,
+        "fps": 60.0,
+        "embedding_id": 17
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 1080,
+        "time": 18.0,
+        "fps": 60.0,
+        "embedding_id": 18
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 1140,
+        "time": 19.0,
+        "fps": 60.0,
+        "embedding_id": 19
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test.mp4",
+        "frame": 1200,
+        "time": 20.0,
+        "fps": 60.0,
+        "embedding_id": 20
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 0,
+        "time": 0.0,
+        "fps": 25.0,
+        "embedding_id": 21
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 25,
+        "time": 1.0,
+        "fps": 25.0,
+        "embedding_id": 22
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 50,
+        "time": 2.0,
+        "fps": 25.0,
+        "embedding_id": 23
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 75,
+        "time": 3.0,
+        "fps": 25.0,
+        "embedding_id": 24
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 100,
+        "time": 4.0,
+        "fps": 25.0,
+        "embedding_id": 25
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 125,
+        "time": 5.0,
+        "fps": 25.0,
+        "embedding_id": 26
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 150,
+        "time": 6.0,
+        "fps": 25.0,
+        "embedding_id": 27
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 175,
+        "time": 7.0,
+        "fps": 25.0,
+        "embedding_id": 28
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 200,
+        "time": 8.0,
+        "fps": 25.0,
+        "embedding_id": 29
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 225,
+        "time": 9.0,
+        "fps": 25.0,
+        "embedding_id": 30
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 250,
+        "time": 10.0,
+        "fps": 25.0,
+        "embedding_id": 31
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 275,
+        "time": 11.0,
+        "fps": 25.0,
+        "embedding_id": 32
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 300,
+        "time": 12.0,
+        "fps": 25.0,
+        "embedding_id": 33
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 325,
+        "time": 13.0,
+        "fps": 25.0,
+        "embedding_id": 34
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 350,
+        "time": 14.0,
+        "fps": 25.0,
+        "embedding_id": 35
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 375,
+        "time": 15.0,
+        "fps": 25.0,
+        "embedding_id": 36
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 400,
+        "time": 16.0,
+        "fps": 25.0,
+        "embedding_id": 37
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 425,
+        "time": 17.0,
+        "fps": 25.0,
+        "embedding_id": 38
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 450,
+        "time": 18.0,
+        "fps": 25.0,
+        "embedding_id": 39
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 475,
+        "time": 19.0,
+        "fps": 25.0,
+        "embedding_id": 40
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 500,
+        "time": 20.0,
+        "fps": 25.0,
+        "embedding_id": 41
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 525,
+        "time": 21.0,
+        "fps": 25.0,
+        "embedding_id": 42
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 550,
+        "time": 22.0,
+        "fps": 25.0,
+        "embedding_id": 43
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 575,
+        "time": 23.0,
+        "fps": 25.0,
+        "embedding_id": 44
+    },
+    {
+        "source_type": "semantic_video",
+        "dataset": "video",
+        "video": "test2.mp4",
+        "source": "C:\\Users\\Karsel\\Desktop\\forensic tool\\ForensicPhotoSearch\\video\\data\\test2.mp4",
+        "frame": 600,
+        "time": 24.0,
+        "fps": 25.0,
+        "embedding_id": 45
+    }
+]
