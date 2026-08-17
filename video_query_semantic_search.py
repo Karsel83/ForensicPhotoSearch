@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import os
 import sys
 
 import cv2
@@ -42,9 +43,18 @@ MODEL_PATH = (
     / "Qwen3-VL-Embedding-2B"
 )
 
+# FAISS index files are kept outside the project tree so that
+# Windows paths containing non-ASCII usernames do not break FAISS I/O.
+# Set FORENSIC_FAISS_ROOT to override the default on another machine.
+FAISS_ROOT = Path(
+    os.environ.get(
+        "FORENSIC_FAISS_ROOT",
+        r"C:\ForensicFAISS"
+    )
+)
+
 IMAGE_INDEX = (
-    PROJECT_ROOT
-    / "data"
+    FAISS_ROOT
     / "semantic"
     / "image.index"
 )
@@ -57,8 +67,7 @@ IMAGE_METADATA = (
 )
 
 VIDEO_INDEX = (
-    PROJECT_ROOT
-    / "data"
+    FAISS_ROOT
     / "semantic_video"
     / "video.index"
 )
@@ -157,6 +166,19 @@ class VideoQuerySemanticSearch:
             "[*] Loading image FAISS..."
         )
 
+        if not IMAGE_INDEX.exists():
+            raise FileNotFoundError(
+                "Image FAISS index not found:\n"
+                f"{IMAGE_INDEX}\n\n"
+                "Set FORENSIC_FAISS_ROOT or create the index at "
+                f"{FAISS_ROOT / 'semantic'}."
+            )
+
+        if not IMAGE_METADATA.exists():
+            raise FileNotFoundError(
+                f"Image metadata not found:\n{IMAGE_METADATA}"
+            )
+
         self.image_index = faiss.read_index(
             str(IMAGE_INDEX)
         )
@@ -177,6 +199,19 @@ class VideoQuerySemanticSearch:
         print(
             "[*] Loading video FAISS..."
         )
+
+        if not VIDEO_INDEX.exists():
+            raise FileNotFoundError(
+                "Video FAISS index not found:\n"
+                f"{VIDEO_INDEX}\n\n"
+                "Set FORENSIC_FAISS_ROOT or create the index at "
+                f"{FAISS_ROOT / 'semantic_video'}."
+            )
+
+        if not VIDEO_METADATA.exists():
+            raise FileNotFoundError(
+                f"Video metadata not found:\n{VIDEO_METADATA}"
+            )
 
         self.video_index = faiss.read_index(
             str(VIDEO_INDEX)
@@ -560,9 +595,7 @@ class VideoQuerySemanticSearch:
         query_frame = query_samples[0]["image"]
 
         temp_dir = (
-            PROJECT_ROOT
-            / "data"
-            / "semantic_video"
+            FAISS_ROOT
             / "video_query_frames"
         )
 
@@ -706,9 +739,7 @@ class VideoQuerySemanticSearch:
             return []
 
         query_frame_path = (
-            PROJECT_ROOT
-            / "data"
-            / "semantic_video"
+            FAISS_ROOT
             / "video_query_frames"
             / "query_video_frame.jpg"
         )
@@ -740,9 +771,7 @@ class VideoQuerySemanticSearch:
             try:
 
                 frame_path = (
-                    PROJECT_ROOT
-                    / "data"
-                    / "semantic_video"
+                    FAISS_ROOT
                     / "video_query_frames"
                     / (
                         f"{Path(candidate['source']).stem}"
