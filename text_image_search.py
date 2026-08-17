@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import os
 import sys
 
 import faiss
@@ -50,9 +51,31 @@ SEMANTIC_DIR = (
     / "semantic"
 )
 
-INDEX_FILE = (
+# Prefer a local project index when it is usable.
+# On Windows systems with non-ASCII usernames, FAISS may fail
+# to open the project-local index, so fall back to an ASCII path.
+FAISS_ROOT = Path(
+    os.environ.get(
+        "FORENSIC_FAISS_ROOT",
+        r"C:\ForensicFAISS"
+    )
+)
+
+PROJECT_INDEX_FILE = (
     SEMANTIC_DIR
     / "image.index"
+)
+
+FALLBACK_INDEX_FILE = (
+    FAISS_ROOT
+    / "semantic"
+    / "image.index"
+)
+
+INDEX_FILE = (
+    PROJECT_INDEX_FILE
+    if PROJECT_INDEX_FILE.exists()
+    else FALLBACK_INDEX_FILE
 )
 
 METADATA_FILE = (

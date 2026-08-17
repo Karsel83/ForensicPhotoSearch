@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import os
 import sys
 
 import cv2
@@ -48,38 +49,71 @@ MODEL_PATH = (
     / "Qwen3-VL-Embedding-2B"
 )
 
-IMAGE_INDEX = (
+SEMANTIC_DIR = (
     PROJECT_ROOT
     / "data"
+    / "semantic"
+)
+
+SEMANTIC_VIDEO_DIR = (
+    PROJECT_ROOT
+    / "data"
+    / "semantic_video"
+)
+
+FAISS_ROOT = Path(
+    os.environ.get(
+        "FORENSIC_FAISS_ROOT",
+        r"C:\ForensicFAISS"
+    )
+)
+
+PROJECT_IMAGE_INDEX = (
+    SEMANTIC_DIR
+    / "image.index"
+)
+
+FALLBACK_IMAGE_INDEX = (
+    FAISS_ROOT
     / "semantic"
     / "image.index"
 )
 
+IMAGE_INDEX = (
+    PROJECT_IMAGE_INDEX
+    if PROJECT_IMAGE_INDEX.exists()
+    else FALLBACK_IMAGE_INDEX
+)
+
 IMAGE_METADATA = (
-    PROJECT_ROOT
-    / "data"
-    / "semantic"
+    SEMANTIC_DIR
     / "metadata.json"
 )
 
-VIDEO_INDEX = (
-    PROJECT_ROOT
-    / "data"
+PROJECT_VIDEO_INDEX = (
+    SEMANTIC_VIDEO_DIR
+    / "video.index"
+)
+
+FALLBACK_VIDEO_INDEX = (
+    FAISS_ROOT
     / "semantic_video"
     / "video.index"
 )
 
+VIDEO_INDEX = (
+    PROJECT_VIDEO_INDEX
+    if PROJECT_VIDEO_INDEX.exists()
+    else FALLBACK_VIDEO_INDEX
+)
+
 VIDEO_METADATA = (
-    PROJECT_ROOT
-    / "data"
-    / "semantic_video"
+    SEMANTIC_VIDEO_DIR
     / "metadata.json"
 )
 
 TEMP_FRAME_DIR = (
-    PROJECT_ROOT
-    / "data"
-    / "semantic_video"
+    FAISS_ROOT
     / "image_query_frames"
 )
 
@@ -666,18 +700,38 @@ class ImageQuerySemanticSearch:
 
             try:
 
-                video_source = (
+                video_source = Path(
                     candidate["source"]
                 )
+
+                if not video_source.exists():
+                    video_source = (
+                        PROJECT_ROOT
+                        / "video"
+                        / "data"
+                        / Path(
+                            candidate["video"]
+                        ).name
+                    )
+
+                if not video_source.exists():
+                    raise FileNotFoundError(
+                        f"Video not found: {video_source}"
+                    )
 
                 # -----------------------------------------
                 # Extract candidate frame
                 # -----------------------------------------
 
+                TEMP_FRAME_DIR.mkdir(
+                    parents=True,
+                    exist_ok=True
+                )
+
                 temp_path = (
                     TEMP_FRAME_DIR
                     / (
-                        f"{Path(video_source).stem}"
+                        f"{video_source.stem}"
                         f"_frame_{frame_number}.jpg"
                     )
                 )

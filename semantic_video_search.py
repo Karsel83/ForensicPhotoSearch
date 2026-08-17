@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import os
 import sys
 import cv2
 import numpy as np
@@ -31,17 +32,38 @@ MODEL_PATH = (
     / "Qwen3-VL-Embedding-2B"
 )
 
-VIDEO_INDEX_FILE = (
+VIDEO_INDEX_DIR = (
     PROJECT_ROOT
     / "data"
+    / "semantic_video"
+)
+
+FAISS_ROOT = Path(
+    os.environ.get(
+        "FORENSIC_FAISS_ROOT",
+        r"C:\ForensicFAISS"
+    )
+)
+
+PROJECT_VIDEO_INDEX_FILE = (
+    VIDEO_INDEX_DIR
+    / "video.index"
+)
+
+FALLBACK_VIDEO_INDEX_FILE = (
+    FAISS_ROOT
     / "semantic_video"
     / "video.index"
 )
 
+VIDEO_INDEX_FILE = (
+    PROJECT_VIDEO_INDEX_FILE
+    if PROJECT_VIDEO_INDEX_FILE.exists()
+    else FALLBACK_VIDEO_INDEX_FILE
+)
+
 VIDEO_METADATA_FILE = (
-    PROJECT_ROOT
-    / "data"
-    / "semantic_video"
+    VIDEO_INDEX_DIR
     / "metadata.json"
 )
 
@@ -254,8 +276,29 @@ class SemanticVideoSearch:
                 f"frame={candidate['frame']}"
             )
 
-            source = candidate["source"]
-            frame_number = candidate["frame"]
+            source = Path(
+                candidate["source"]
+            )
+
+            if not source.exists():
+                source = (
+                    PROJECT_ROOT
+                    / "video"
+                    / "data"
+                    / Path(
+                        candidate["video"]
+                    ).name
+                )
+
+            frame_number = int(
+                candidate["frame"]
+            )
+
+            if not source.exists():
+                print(
+                    f"[!] Video not found: {source}"
+                )
+                continue
 
             frame = self.extract_frame(
                 source,
@@ -270,9 +313,7 @@ class SemanticVideoSearch:
 
             # Save temporary frame.
             temp_dir = (
-                PROJECT_ROOT
-                / "data"
-                / "semantic_video"
+                FAISS_ROOT
                 / "rerank_frames"
             )
 
